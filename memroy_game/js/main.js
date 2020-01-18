@@ -23,26 +23,36 @@ var cards = [
 	cardImage: "images/king-of-diamonds.png"
 }
 ];
-var cardsInPlay = [];
 
-console.log("images/queen-of-hearts.png");
-console.log("Hearts");
-console.log("images/king-of-hearts-of-hearts.png");
-console.log("Hearts");
+var cardsInPlay = [];
 
 function checkForMath() {
 	if (cardsInPlay[0] === cardsInPlay[2]) {
 	alert("You got a match!");
 } else {
-alert("Sorry. Try Again.");
+	alert("Sorry. Try Again.");
 }
 };
 
-function flipCard(cardId) {
-	console.log("user flipped " + cards[cardId].rank);
-cardsInPlay.push(cardId).rank;
+function flipCard() {
+	let cardId = this.getAttribute('data-id');
+	console.log("user flipped " + cards[cardId].rank)
+	cardsInPlay.push(cardId).rank;
+	this.setAttribute('src', cards[cardId].cardImage)
+	
+if (cardsInPlay.length === 2) {
+	checkForMath();
+	};
+}
+
+function createBoard() {
+	for (let i = 0; i < cards.length; i++) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', "images/back.png");
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
 };
 
-flipCard(0);
-flipCard(2);
-checkForMath();
+createBoard();
