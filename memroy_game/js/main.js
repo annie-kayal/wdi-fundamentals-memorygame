@@ -27,7 +27,7 @@ var cards = [
 var cardsInPlay = [];
 
 function checkForMath() {
-	if (cardsInPlay[0] === cardsInPlay[2]) {
+	if (cardsInPlay[0] === cardsInPlay[1]) {
 	alert("You got a match!");
 } else {
 	alert("Sorry. Try Again.");
@@ -35,9 +35,10 @@ function checkForMath() {
 };
 
 function flipCard() {
+	console.log(this)
 	let cardId = this.getAttribute('data-id');
 	console.log("user flipped " + cards[cardId].rank)
-	cardsInPlay.push(cardId).rank;
+	cardsInPlay.push(cards[cardId].rank);
 	this.setAttribute('src', cards[cardId].cardImage)
 	
 if (cardsInPlay.length === 2) {
